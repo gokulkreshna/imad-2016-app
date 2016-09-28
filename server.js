@@ -6,20 +6,40 @@ var app = express();
 app.use(morgan('combined'));
 
 
-var articleOne = {
-    title: 'Article One |Gokul krishna',
-    heading: 'Article One',
-    date: 'Sept 05,2016',
+var articles = {
+ 'article-one' : {
+        title: 'Article One | Gokul krishna',
+        heading: 'Article One',
+        date: 'Sept 05,2016',
         content: `
-                    <p>
-                        This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.
-                    </p>
-                    <p>
-                        This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.
-                    </p>
-                     <p>
-                        This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.
-                    </p>`
+                        <p>
+                            This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.
+                        </p>
+                        <p>
+                            This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.
+                        </p>
+                         <p>
+                            This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.This is the content of my fisrt article.
+                        </p>`
+},
+ 'article-two' : {
+            title: 'Article Two | Gokul krishna',
+            heading: 'Article Two',
+            date: 'Sept 10,2016',
+            content: `
+                            <p>
+                                This is the content of my second article.
+                            </p>`
+ },
+ 'article-three' : {
+            title: 'Article Three | Gokul krishna',
+            heading: 'Article Three',
+            date: 'Sept 15,2016',
+            content: `
+                            <p>
+                                This is the content of my second article.
+                            </p>`
+ }
 };
 
 function createTemplate (data) {
@@ -57,21 +77,19 @@ function createTemplate (data) {
   `;
   return htmlTemplate;
 }
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
-  res.send(createTemplate(articleOne));
+app.get('/:articleName', function (req, res) {
+    // articleName == article-one
+   //  articles[articleName] == {} content object for article one
+    var articleName = req.params.articleName; 
+    res.send(createTemplate(articles[articleName]));
 });
 
-app.get('/article-two', function (req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
 
-app.get('/article-three', function (req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
