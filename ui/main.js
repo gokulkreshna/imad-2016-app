@@ -13,8 +13,8 @@ button.onclick = function () {
         if (request.readystate === XMLHttpRequest.DONE) {
             //Take some action
             if (request.state === 200) {
-                var counter = request.responsetext;
-                 var span = document.getElementById("count");
+                var counter = request.responseText;
+                 var span = document.getElementById('count');
                   span.innerHTML = counter.toString();
                  }
         }
