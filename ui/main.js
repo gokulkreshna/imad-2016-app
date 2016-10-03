@@ -11,7 +11,7 @@ button.onclick = function () {
    //render the response in correct span
        counter = counter + 1;
        var span = document.getElementById('count');
-       span.innerHTML = counter.toSring();
+       span.innerHTML = counter.toString();
 };
 
 
