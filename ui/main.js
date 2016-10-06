@@ -1,6 +1,5 @@
 // Counter code
 var button = document.getElementById('counter');
-var co
 
 button.onclick = function() {
     
@@ -16,7 +15,8 @@ button.onclick = function() {
                      var span = document.getElementById('count');
                     span.innerHTML = counter.toString();
                 }
-                  }
+             }
+             //Not done yet
             
              };
         // MAke the request
